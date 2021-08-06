@@ -29,7 +29,7 @@ Vue.use(Vuex);
 const store = () =>
   new Vuex.Store({
     state: {
-      currentInterface: 0, // inicia pela ui do mywms
+      currentInterface: 0, // inicia pela ui do menu1
       loggedIn: false,
       alert: null,
       loading: null,
@@ -94,7 +94,7 @@ const store = () =>
       currentInterface({commit}, value) {
         commit("setCurrentInterface", value);
       },
-      
+
       clearStore({commit}) {
         commit("CLEAR_STORE");
       },

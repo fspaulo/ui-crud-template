@@ -1,8 +1,8 @@
 <!--
-  Componente responsavel pelo menu lateral
-  De acordo com a interface atual
+  Component responsible for the side menu
+  According to the current interface
    @property currentInterface,
-  o menu é moldado.
+  the menu is molded.
  -->
 <template>
   <v-navigation-drawer
@@ -31,8 +31,8 @@
         <v-list-item-title>Home</v-list-item-title>
       </v-list-item>
 
-      <!-- GRUPO PRINCIPAL -->
-      <!-- Se campo pesquisa estiver vazio -->
+      <!-- MAIN GROUP -->
+      <!-- If search field is empty -->
       <v-list-group v-if="!menuSearch"
                     v-for="item in filteredItems"
                     :value="true"
@@ -42,7 +42,7 @@
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </template>
 
-        <!--  Se um subItem não tiver o atributo items, cria link direto para a pagina  -->
+        <!--  If subItem does not have the attribute items, link directly to the page  -->
         <v-list-item v-if="typeof subItem.items === 'undefined'"
                      v-for="subItem in item.subItems"
                      :key="subItem.title"
@@ -54,8 +54,8 @@
           <v-list-item-title v-text="subItem.title"></v-list-item-title>
         </v-list-item>
 
-        <!-- SUB-SUBGRUPO -->
-        <!-- Se um subItem tiver o atributo items, cria sub-grupos com os respectivos links -->
+        <!-- SUB-SUB-GROUP -->
+        <!-- If subItem has an attribute items, create sub-groups with respective items -->
         <v-list-group v-if="typeof subItem.items !== 'undefined' && subItem.items !== null"
                       v-for="subItem in item.subItems"
                       :key="subItem.title"
@@ -73,7 +73,7 @@
 
       </v-list-group>
 
-      <!-- Se for pesquisado algo, renderiza os items -->
+      <!-- If something is searched, render the items -->
       <v-list-item v-if="menuSearch"
                    v-for="(item) in filteredItems"
                    :key="item.title"
@@ -105,9 +105,9 @@ export default {
           title: this.$t("system"),
           icon: "mdi-cog",
           subItems: [  // sub-items do menu
-            {title: this.$t("covid"), to: "/mywms/system/client"},
-            {title: this.$tc("pokemon", 2), to: "/mywms/system/user"},
-            {title: this.$t("properties"), to: "/mywms/system/properties"},
+            {title: this.$t("covid"), to: "/menu1/system/client"},
+            {title: this.$tc("pokemon", 2), to: "/menu1/system/user"},
+            {title: this.$t("properties"), to: "/menu1/system/properties"},
           ],
         },
 
@@ -118,24 +118,24 @@ export default {
             {
               title: this.$tc("location", 1),
               items: [
-                {title: this.$tc("location", 2), to: "/mywms/masterData/location/storageLocation"},
-                {title: this.$t("locationType"), to: "/mywms/masterData/location/storageLocationType"},
+                {title: this.$tc("location", 2), to: "/menu1/location/storageLocation"},
+                {title: this.$t("locationType"), to: "/menu1/location/storageLocationType"},
               ]
             },
 
             {
               title: this.$tc("itemData", 1),
               items: [
-                {title: this.$tc("itemData", 2), to: "/mywms/masterData/itemData/itemData"},
-                {title: this.$t("code"), to: "/mywms/masterData/itemData/itemDataCode"},
+                {title: this.$tc("itemData", 2), to: "/menu1/itemData/itemData"},
+                {title: this.$t("code"), to: "/menu1/itemData/itemDataCode"},
               ]
             },
 
             {
               title: this.$tc("devices.device", 1),
               items: [
-                {title: this.$tc("devices.device", 2), to: "/mywms/masterData/devices/device"},
-                {title: this.$t("devices.printer"), to: "/mywms/masterData/devices/printer"},
+                {title: this.$tc("devices.device", 2), to: "/menu1/devices/device"},
+                {title: this.$t("devices.printer"), to: "/menu1/devices/printer"},
               ]
             },
           ],
@@ -148,9 +148,8 @@ export default {
           title: "Principal",
           icon: "mdi-chart-bar",
           subItems: [  // sub-items do menu
-            {title: "Dashboard", to: "/mybi/dashboard"},
-            // {title: this.$tc("user", 1), to: "/mywms/system/user"},
-
+            {title: "Dashboard", to: "/menu2/dashboard"},
+            // {title: this.$tc("user", 1), to: "/menu1/system/user"},
           ],
         },
       ],
@@ -166,7 +165,7 @@ export default {
       return this.$store.getters.getLoggedIn;
     },
 
-    filteredItems() { // todo fazer if com o getCurrentInterface para pegar o item de cada UI
+    filteredItems() {
       if (!this.menuSearch) {
         if (this.getCurrentInterface === 0)
           return this.itemsMyWms;
@@ -180,15 +179,15 @@ export default {
 
       let filtered = []
 
-      if (this.getCurrentInterface === 0 || this.getCurrentInterface === 2) { // myWMS
+      if (this.getCurrentInterface === 0 || this.getCurrentInterface === 2) { // menu 01
         this.itemsMyWms.filter(item => {
           item.subItems.filter(subItem => {
 
-            /* Se NÃO possuir atributo 'to', então é uma subpasta */
+            /* If it does NOT have 'to' attribute, then it is a subfolder. */
             if (subItem.title.toLowerCase().includes(this.menuSearch) && typeof subItem.to !== 'undefined')
               filtered.push(subItem)
 
-            /* Se existir o atributo items em subItems */
+            /* If exists attribute items in subItems... */
             if (typeof subItem.items !== 'undefined') {
               subItem.items.forEach(itemFromSub => {
                 if (itemFromSub.title.toLowerCase().includes(this.menuSearch))
@@ -198,11 +197,11 @@ export default {
           })
         })
       }
-      else if (this.getCurrentInterface === 1) { // myBI
+      else if (this.getCurrentInterface === 1) { // menu 02
         this.itemsMyBI.filter(item => {
           item.subItems.filter(subItem => {
 
-            /* Se NÃO possuir atributo 'to', então é uma subpasta */
+            /* If it does NOT have 'to' attribute, then it is a subfolder. */
             if (subItem.title.toLowerCase().includes(this.menuSearch) && typeof subItem.to !== 'undefined')
               filtered.push(subItem)
 
