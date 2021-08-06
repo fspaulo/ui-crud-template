@@ -1,0 +1,175 @@
+{
+  "authentication": {
+    "username": "Username",
+    "password": "Password",
+    "btnLogin": "Login",
+    "alertLogin": "Invalid User",
+    "msgErro": "You must input a",
+    "welcome": "Welcome"
+  },
+
+  "topBar": {
+    "help": "Help",
+    "helpOn": "Online Help",
+    "info": "About System",
+    "title": "About system",
+    "version": "Version",
+    "btnLogout": "Logout",
+    "theme": "Change theme",
+    "changeLanguage": "Change Language",
+    "pt": "Português",
+    "en": "English"
+  },
+
+  "toolbar": {
+    "dialog": "Dialog",
+    "save": "Save Dialog",
+    "reset": "Reset Dialog",
+    "data": "Data",
+    "multiSelect": "Multiselection",
+    "quickSearch": "Quicksearch",
+    "detailedSearch": "Detailsearch",
+    "excelExport": "Export Excel"
+  },
+
+  "toolbarTable": {
+    "reload": "Reload",
+    "filter": "Filter",
+    "savedQueries": "Saved Queries",
+    "newQuery": "New Query",
+    "editQuery": "Edit Query",
+    "deleteQuery": "Delete Query"
+  },
+
+  "footer": {
+    "year": "Year",
+    "about": "About us"
+  },
+
+  "simpleTable": {
+    "noResult": "No records found",
+    "loading": "Loading data",
+    "emptyTable": "Empty table",
+    "itemsPerPage": "Items per page"
+  },
+
+  "detailSearch": {
+    "newQuery": "New Query",
+    "apply": "Apply",
+    "andTerm": "AND - All terms matches",
+    "orTerm": "OR - At least on term matches",
+    "condition": "Condition",
+    "addToken": "Add search token"
+  },
+
+  "devices": {
+    "device": "Device | Devices",
+    "printer": "Printers"
+  },
+
+  "month": {
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mar",
+    "apr": "Apr",
+    "may": "May",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "Aug",
+    "sep": "Sep",
+    "oct": "Oct",
+    "nov": "Nov",
+    "dec": "Dec"
+  },
+
+  "error": {
+    "erro": "An error has occurred",
+    "notFound": "404 not found"
+  },
+
+  "masterData": "Master Data",
+  "system": "System",
+  "save": "Save",
+  "columns": "Columns",
+  "search": "Search",
+  "registers": "Registers",
+  "delete": "Delete",
+
+  "pokemon": "Pokemon | Pokemons",
+  "name": "Name",
+  "code": "Codes",
+  "itemData": "Material | Materials",
+  "itemName": "Material Name",
+  "number": "Number",
+  "additionalContent": "Notes",
+  "note": "Notes",
+  "key": "Key",
+  "covid": "Covid Cases",
+  "value": "Value",
+  "group": "Group",
+  "description": "Description",
+  "properties": "Properties",
+  "location": "Location | Locations",
+  "locationType": "Location Types",
+  "barCode": "Bar Code",
+  "area": "Area",
+  "locationCluster": "Location Cluster",
+  "zone": "Zone",
+  "rack": "Rack",
+  "url": "URL",
+  "x": "X",
+  "y": "Y",
+  "z": "Z",
+  "field": "Field",
+  "fieldIndex": "Field Index",
+  "orderIndex": "Order Index",
+  "allocation": "Allocation (%)",
+  "capacity": "Capacity | Capacities",
+  "unitLoads": "UnitLoads",
+  "stocks": "Stocks",
+  "lastStocktaking": "Last Stocktaking",
+  "lock": "Lock",
+  "created": "Created",
+  "modified": "Modified",
+  "dbId": "DB-ID",
+  "dbVersion": "DB-Version",
+  "height": "Height (mm)",
+  "width": "Width (mm)",
+  "depth": "Depth (mm)",
+  "liftingCapacity": "Lifting Capacity (Kg)",
+  "handlingType": "Handling Type",
+  "createUnitLoad": "Create UnitLoad",
+  "tradeGroup": "Trade Group",
+  "defaultUnitLoadType": "Default UnitLoad Type",
+  "serialRecord": "Serial Record",
+  "adviceMandatory": "Advice Mandatory",
+  "safetyStock": "Safety Stock",
+  "lotMandatory": "Lot Mandatory",
+  "shelfLife": "Shelf Life",
+  "handlingUnit": "Handling Unit",
+  "scale": "Scales",
+  "weight": "Weight (Kg)",
+  "itemDataExtension": "Item Data Extension",
+  "receivedMoreThenAdvised": "Received More Then Advised",
+  "manufacturer": "Manufacturer",
+  "index": "Index",
+  "serial": "Serial",
+  "type": "Typo",
+  "appVersion": "Version",
+  "macAddress": "MAC Address",
+  "operator": "Operator",
+  "printer": "Printer",
+  "ip": "IP",
+  "currentTask": "Current Task",
+  "inputMode": "Input Mode",
+  "connectionType": "Connection Type",
+  "port": "Port",
+  "close": "Close",
+  "maxCharacter255": "Max 255 characters",
+  "recordDetails": "Record Details",
+  "deleteMessage": "The selected records will be removed!",
+  "no": "No",
+  "yes": "Yes",
+  "confirm": "Confirm",
+  "cancel": "Cancel"
+}
