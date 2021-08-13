@@ -26,10 +26,7 @@
               <template #heading>
                 <div class="text-center pa-5">
                   <div class="text-h4 font-weight-bold">
-                    <v-img alt="Spark Name" class="ml-5 mb-1"
-                           contain min-width="100"
-                           :src="isDarkTheme ? '/logos/vuetify.png' : '/logos/vuetify.png'"
-                           width="100"/>
+                    <span>Login</span>
                   </div>
                   <div class="mt-4">
                     <v-btn icon class="mx-2" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
