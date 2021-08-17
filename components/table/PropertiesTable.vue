@@ -39,10 +39,15 @@
           <v-tab-item>
             <v-simple-table class="properties py-2" :height="maxHeight">
               <tr>
-                <th class="properties-table-header" colspan="2">{{ $t(tableName).toUpperCase() }}</th>
+                <th class="properties-table-header" colspan="2">
+                  {{ $t(tableName).toUpperCase() }}
+                </th>
               </tr>
 
-              <tr v-for="header in headers">
+              <tr
+                v-for="header in headers"
+                :key="header.text"
+              >
                 <td v-if="!showHeaders(header)"
                     class="table-data" colspan="2">
                   <label>{{ header.text }}:</label>
@@ -65,7 +70,10 @@
                 </th>
               </tr>
 
-              <tr v-for="header in headers">
+              <tr
+                v-for="header in headers"
+                :key="header.text"
+              >
                 <td v-if="showHeaders(header)"
                     class="table-data" colspan="2">
                   <label>{{ header.text }}:</label>
@@ -130,7 +138,7 @@ export default {
 
     showHeaders(h) {
       if (h.text === this.$t('created') || h.text === this.$t('modified') ||
-        h.text === this.$t('dbId') || h.text === this.$t('dbVersion')) {
+        h.text === this.$t('id')) {
         return h
       }
     }

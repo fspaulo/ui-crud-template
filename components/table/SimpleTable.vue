@@ -1,12 +1,6 @@
 <template>
   <div>
     <Toolbar :header="headers" :data="data" :title="title"/>
-    <ToolbarTable :title="title" :searchValue="search" @send="receiveSearch"/>
-
-    <action-button id="action-buttons" @actionClick="clickEditDialog"
-                   :create-item="createItem"
-                   :edit-item="editItem"
-                   :registers="data.length"/>
 
     <edit-dialog
       :show-edit-dialog="showEditDialog"
@@ -30,77 +24,55 @@
       :deleted-item="deleteItem"
     />
 
-    <div>
-      <el-table
-        id="dataTable"
-        :key="key"
-        :ref="isMultipleSelect ? 'multipleTable' : 'table'"
-        :data="data.filter(d => !search || d.name.toLowerCase().includes(search.toLowerCase()))"
-        width="100%"
-        :height="tableSizeByScreen"
-        fit
-        border
-        highlight-current-row
-        :empty-text="$t('simpleTable.emptyTable')"
-        @row-click="clickProperties"
-        @current-change="clickTeste"
-        :stripe="this.$vuetify.theme.dark === false"
-        :span-method="arraySpanMethod(headers.length)"
-        :class="this.$vuetify.theme.dark === true ? 'table-box-dark' : 'table-box-light'"
-        @selection-change="handleSelectionChange"
-      >
+    <v-data-table
+      v-model="selected"
+      :headers="showHeaders"
+      fixed-header
+      :items="data"
+      :search="search"
+      width="100%"
+      :height="tableSizeByScreen"
+      dense
+      :no-data-text="$t('simpleTable.emptyTable')"
+      :no-results-text="$t('simpleTable.noResult')"
+      :loading-text="$t('simpleTable.loading')"
+      class="elevation-0 createTable"
+      @click:row="clickProperties"
+      :single-select="false"
+      :show-select="isMultipleSelect"
+      :items-per-page="itemPerPageByScreen"
+    >
+      <!--  Table Header  -->
+      <template v-slot:top>
+        <ToolbarTable :title="title" :searchValue="search" @send="receiveSearch"/>
 
-        <el-table-column v-if="isMultipleSelect"
-                         :show-overflow-tooltip="true"
-                         type="selection" width="45"/>
+        <action-button id="action-buttons"
+                       @actionClick="clickEditDialog"
+                       :create-item="createItem"
+                       :edit-item="editItem"
+                       :registers="data.length"/>
 
-        <el-table-column v-for="item in fixedHeader"
-                         :key="item.value"
-                         :fixed="item.fixed"
-                         :label="item.text"
-                         :show-overflow-tooltip="true"
-                         :sortable="item.sortable"
-                         :prop="item.value"
-                         :width="item.width"
-        />
+        <div class="button_columns mr-6 mt-0">
+          <v-select v-model="selectedHeaders"
+                    :items="newHeaders" class="remove_underline mt-3"
+                    append-icon="mdi-menu"
+                    multiple
+                    return-object
+                    flat dense>
+            <template v-slot:selection="{ item, index }"/>
+          </v-select>
+        </div>
+      </template>
+    </v-data-table>
 
-        <el-table-column v-for="item in defaultHeader"
-                         :key="item.text"
-                         :fixed="item.fixed"
-                         :label="item.text"
-                         :show-overflow-tooltip="true"
-                         :sortable="item.sortable"
-                         :prop="item.value"
-                         :width="item.width"
-        >
-          <template slot-scope="scope">
-            {{ scope.row[item.value] }}
-          </template>
-        </el-table-column>
-
-        <el-table-column width="40" fixed="right">
-          <template slot="header">
-            <v-select v-model="checkboxVal" :items="headersCheckboxOptions"
-                      class="remove_underline mt-3"
-                      append-icon="mdi-menu"
-                      multiple return-object
-                      flat dense>
-              <template v-slot:selection="{ item, index }"/>
-            </v-select>
-          </template>
-        </el-table-column>
-
-      </el-table>
-
-      <properties-table
-        :show-properties-table="showPropertiesTable"
-        :selected-item="selectedItem"
-        :headers="headers"
-        :table-name="title"
-        :max-height="tableSizeByScreen"
-        :hide-properties-table="hidePropertiesTable"
-      />
-    </div>
+    <properties-table
+      :show-properties-table="showPropertiesTable"
+      :selected-item="selectedItem"
+      :headers="headers"
+      :table-name="title"
+      :max-height="tableSizeByScreen"
+      :hide-properties-table="hidePropertiesTable"
+    />
 
   </div>
 </template>
@@ -108,11 +80,11 @@
 <script>
 import Toolbar from "~/components/main/Toolbar";
 import ToolbarTable from "~/components/table/ToolbarTable";
+import {mapGetters, mapMutations} from "vuex"
 import PropertiesTable from "~/components/table/PropertiesTable";
 import ActionButton from "~/components/table/ActionButton";
 import EditDialog from "~/components/table/EditDialog";
-import ConfirmDialog from "~/components/table/ConfirmDialog"
-import {mapGetters, mapMutations} from "vuex";
+import ConfirmDialog from "~/components/table/ConfirmDialog";
 
 export default {
   components: {
@@ -130,10 +102,11 @@ export default {
     headers: Array,
   },
 
-  data() {
+  data (){
     return {
       search: '',
-      selected: [], // multiple select
+      selected: [],
+      itemsPerPageSelect: [15, 25, 50, 75, 100],
 
       showPropertiesTable: false,
       showEditDialog: false,
@@ -142,11 +115,8 @@ export default {
       tableName: String,
       actionButton: Object,
 
-      key: 1, // refresh table
-      headersCheckboxOptions: this.headers, // all headers in checkbox
-      checkboxVal: [], // Marked checkbox show=true
-      defaultHeader: [], // Default headers show=true
-      fixedHeader: [], // fixed header
+      newHeaders: [],
+      selectedHeaders: [],
     }
   },
 
@@ -156,20 +126,6 @@ export default {
 
     receiveSearch(e) {
       this.search = e;
-    },
-
-    arraySpanMethod(arraySize) {
-      return ({row, column, rowIndex, columnIndex}) => {
-        if (!this.isMultipleSelect)
-          if (columnIndex === arraySize - 1)
-            return [1, 2];
-          else if (columnIndex === arraySize)
-            return [1, 2];
-      }
-    },
-
-    handleSelectionChange(val) {
-      this.selected = val;
     },
 
     clickProperties(item) {
@@ -183,12 +139,10 @@ export default {
 
       if (this.showPropertiesTable === true) {
         if (btn.name === "delete") {
-          /*ActionButton.methods.deleteProperty(btn, this.selectedItem);*/
           this.showConfirmDialog = !this.showConfirmDialog;
         }
 
         if (btn.name === "edit") {
-          /*ActionButton.methods.editProperty(btn, this.selectedItem);*/
           this.showEditDialog = !this.showEditDialog;
         }
 
@@ -196,7 +150,6 @@ export default {
         if (btn.name === "create") {
           this.showEditDialog = !this.showEditDialog;
           this.selectedItem = {};
-          /* ActionButton.methods.createProperty();*/
         }
       }
     },
@@ -223,9 +176,6 @@ export default {
       this.hideEditDialog();
     },
 
-    clickTeste() { // todo quickisearch
-    },
-
     hidePropertiesTable() {
       console.log("hidePropertiesTable")
       this.showPropertiesTable = false;
@@ -243,29 +193,26 @@ export default {
 
   },
 
-  created() {
-    // Detailed search
-    this.setHeadersTable(this.headers);
-    this.setDataTable(this.data);
-
-    const filter = this.headers.filter(el => el.show === true) // checkbox shows only marked show=true
-    this.checkboxVal = filter
-    this.defaultHeader = filter
-
-    this.fixedHeader = this.headers.filter(el => el.fixed === true) // fixed header
-
-    this.headersCheckboxOptions = this.headers.filter(el => { // filter to show checkbox options only on unfixed headers
-      if (el.show === true && el.fixed === false) {
-        return el;
-      } else if (el.show === false && el.fixed === false) {
-        return el
-      }
-    })
+  created () {
+    this.newHeaders = Object.values(this.headers);
+    this.selectedHeaders = this.newHeaders;
   },
 
   computed: {
+    showHeaders () {
+      return this.newHeaders.filter(s => this.selectedHeaders.includes(s));
+    },
+
     isMultipleSelect() {
       return this.getMultipleSelect();
+    },
+
+    itemPerPageByScreen() {
+      if (screen.height < 700) return 15;
+      else if (screen.height >= 700 && screen.height < 820) return 25;
+      else if (screen.height >= 820 && screen.height < 1000) return 50;
+      else if (screen.height > 1000) return 75;
+      else return 0;
     },
 
     tableSizeByScreen() {
@@ -276,83 +223,58 @@ export default {
     },
   },
 
-  watch: {
+  watch:{
     isMultipleSelect() {
       this.selected = [];
-    },
-
-    checkboxVal(valArr) {
-      this.defaultHeader = this.headersCheckboxOptions.filter(el => valArr.indexOf(el) >= 0)
-      this.key = this.key + 1
-    },
+    }
   }
+
 }
 </script>
 
-<style lang="scss">
+<style scoped>
+.button_columns{
+  float: right;
+  justify-content: center;
 
-.remove_underline {
+  width: 8px;
+}
+.remove_underline{
   padding-right: 100%;
 }
 
-.table-box-dark {
-  background-color: #303030; //scroll bar
-  border: 1px solid #484848;
-
-  th { // header
-    padding: 0 !important;
-    height: 20px;
-    background: #303030;
-    color: #ffffff;
-    border-right: 1px solid #484848;
-    border-bottom: 1px solid #484848;
-  }
-
-  td { // data rows
-    padding: 0 !important;
-    height: 15px;
-    background: #303030;
-    color: #ffffff;
-    border-right: 1px solid #484848;
-    border-bottom: 1px solid #484848;
-  }
-
-  .el-table__body tr:hover > td { // mouse hover
-    background-color: #484848 !important;
-  }
-
-  .el-table__body tr.current-row > td { // selected row
-    background-color: #66432d !important;
-  }
-
-  .el-table__fixed-right-patch { // space on top of table scroll bar
-    background-color: #303030;
-    //border: none;
-  }
-
+.v-data-table.v-data-table.v-data-table{
+  white-space: nowrap;
 }
 
-.table-box-light {
-  th {
-    padding: 0 !important;
-    height: 20px;
-    background: #F5F7FA;
-    color: #606266;
-  }
+/* Table css for Light theme */
+.theme--light.v-data-table.v-data-table.v-data-table >>> th{
+  resize: horizontal;
+  background-color: #ececec;
+}
+.theme--light.v-data-table.v-data-table.v-data-table >>> td{
+  min-width: 10px;
+  max-width: 255px;
+  overflow: auto;
+  border-bottom: 1px solid lightgrey;
+  font-size: smaller;
+  height: 35px;
+}
 
-  td {
-    padding: 0 !important;
-    height: 15px;
-    line-height: 3.5vh;
-  }
-
-  .el-table__body tr.current-row > td { // selected row
-    background-color: #cee7ff !important;
-  }
-
-  .el-table__fixed-right-patch { // espaço em cima da scroll bar da tabela
-    background-color: #F5F7FA;
-  }
+/* Table css for Dark theme */
+.theme--dark.v-data-table.v-data-table.v-data-table >>> th{
+  resize: horizontal;
+  background-color: #303030;
+  border-right: 1px solid #484848;
+}
+.theme--dark.v-data-table.v-data-table.v-data-table >>> td{
+  min-width: 10px;
+  max-width: 255px;
+  overflow: auto;
+  /*border-right: 1px solid #484848;*/
+  border-bottom: 1px solid #484848;
+  font-size: smaller;
+  height: 35px;
 }
 
 </style>
