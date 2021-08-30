@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import alertComponent from "~/components/utils/AlertComponent";
   export default {
     name: 'Notification',
 
@@ -35,6 +36,10 @@
         default: '',
       },
       value: Boolean,
+    },
+
+    components: {
+      alertComponent
     },
 
     data () {

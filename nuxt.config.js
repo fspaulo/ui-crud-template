@@ -12,7 +12,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s',
-    title: 'myWMS',
+    title: 'myUI',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
@@ -25,51 +25,39 @@ export default {
 
   css: [
     "~/assets/styles.scss",
-    "./node_modules/element-ui/packages/theme-chalk/src/table.scss",
   ],
 
-  vendor: [
-    'element-ui'
-  ],
+  vendor: [ ],
 
   babel: {
-    "plugins": [["component", [
-      {
-        "libraryName": "element-ui",
-        "styleLibraryName": "theme-default"
-      },
-      'transform-async-to-generator',
-      'transform-runtime'
-    ]]],
     comments: true
   },
 
   plugins: [
     {src: "~/plugins/i18n.js"},
     {src: '@/plugins/vue-shortkey.js', mode: 'client'},
-    {src: '~plugins/element-ui', ssr: true},
     "~/plugins/bus",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  /* Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules */
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxtjs/vuetify',
   ],
 
   modules: [
     '@nuxtjs/axios',
-    'nuxt-element-ui',
     {src: '@nuxtjs/pwa', options: {icon: {sizes: [512, 192, 380]}}}
   ],
 
-  elementUI: {
-    components: ['Button', 'Table'],
-    locale: 'pt', //TODO
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {
+    baseURL: ''
   },
 
+  // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
       theme_color: "#3B8070",
@@ -86,12 +74,6 @@ export default {
       ],
     },
   },
-
-  // router: {
-  //   middleware: ['authentication']
-  // },
-
-  // serverMiddleware: ['~/middleware/authentication'],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -132,21 +114,4 @@ export default {
     host: '0.0.0.0' // '0.0.0.0' localhost
   },
 
-  axios: {
-    baseURL: 'https://api.tracebox.com.br/dev/'
-  },
-
-  // autenticação
-  /*auth: {
-    strategies: {
-      local: {
-        endpoints: {
-          login: { url: '/sessions', method: 'post', propertyName: 'token' },
-          // logout: { url: '/sessions', method: 'delete' },
-          user: { url: '/sessions/user', method: 'get', propertyName: 'token' },
-        },
-        token_type: ''
-      }
-    }
-  }*/
 }

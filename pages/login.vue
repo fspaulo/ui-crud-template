@@ -98,10 +98,17 @@
 <script>
 import validations from "@/utils/validations";
 import Footer from "~/layouts/Footer";
+import Notification from "~/components/utils/Notification";
+import MaterialCard from "~/components/utils/MaterialCard";
 import {mapActions, mapGetters} from "vuex";
 
 export default {
-  components: {Footer},
+  components: {
+    Footer,
+    Notification,
+    MaterialCard,
+  },
+
   data() {
     return {
       invalidLogin: false,
