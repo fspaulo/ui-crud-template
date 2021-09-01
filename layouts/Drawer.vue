@@ -9,7 +9,8 @@
     v-if="isAuthenticated"
     v-model="drawerFlag"
     :clipped="clipped"
-    fixed app
+    app
+    fixed
     :color="!isDarkTheme ? '#fafafa' : '' "
   >
     <v-list dense shaped>
@@ -102,40 +103,40 @@ export default {
       menuSearch: null,
       itemsMyWms: [
         {   // items do menu
-          title: this.$t("system"),
-          icon: "mdi-cog",
+          title: this.$tc("api", 2),
+          icon: "mdi-api",
           subItems: [  // sub-items do menu
-            {title: this.$t("covid"), to: "/menu1/system/client"},
-            {title: this.$tc("pokemon", 2), to: "/menu1/system/user"},
-            {title: this.$t("properties"), to: "/menu1/system/properties"},
+            {title: this.$t("covid"), to: "/menu1/api/covid"},
+            {title: this.$tc("pokemon", 2), to: "/menu1/api/pokemons"},
+            {title: this.$tc("beer", 2), to: "/menu1/api/beers"},
           ],
         },
 
         {
-          title: this.$t("masterData"),
-          icon: "mdi-folder-open",
+          title: this.$t("activities"),
+          icon: "mdi-clipboard-text-search-outline",
           subItems: [
             {
-              title: this.$tc("location", 1),
+              title: this.$tc("sports", 2),
               items: [
-                {title: this.$tc("location", 2), to: "/menu1/location/storageLocation"},
-                {title: this.$t("locationType"), to: "/menu1/location/storageLocationType"},
+                {title: this.$tc("sports", 2), to: "/menu1/sports/sports", icon:"mdi-basketball"},
+                {title: this.$t("e_sports"), to: "/menu1/sports/e_sports", icon:"mdi-basketball"},
               ]
             },
 
             {
-              title: this.$tc("itemData", 1),
+              title: this.$tc("area", 2),
               items: [
-                {title: this.$tc("itemData", 2), to: "/menu1/itemData/itemData"},
-                {title: this.$t("code"), to: "/menu1/itemData/itemDataCode"},
+                {title: this.$t("science"), to: "/menu1/areas/science"},
+                {title: this.$t("development"), to: "/menu1/areas/development"},
               ]
             },
 
             {
-              title: this.$tc("devices.device", 1),
+              title: this.$tc("device", 2),
               items: [
-                {title: this.$tc("devices.device", 2), to: "/menu1/devices/device"},
-                {title: this.$t("devices.printer"), to: "/menu1/devices/printer"},
+                {title: this.$tc("device", 2), to: "/menu1/devices/device"},
+                {title: this.$t("consoles"), to: "/menu1/devices/consoles"},
               ]
             },
           ],
@@ -145,11 +146,11 @@ export default {
 
       itemsMyBI: [
         {   // items do menu
-          title: "Principal",
+          title: "Main",
           icon: "mdi-chart-bar",
           subItems: [  // sub-items do menu
             {title: "Dashboard", to: "/menu2/dashboard"},
-            // {title: this.$tc("user", 1), to: "/menu1/system/user"},
+            // {title: this.$tc("user", 1), to: "/menu1/api/user"},
           ],
         },
       ],

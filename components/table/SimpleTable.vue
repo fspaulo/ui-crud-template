@@ -217,7 +217,7 @@ export default {
 
     tableSizeByScreen() {
       if (screen.height < 700) return '68vh';
-      if (screen.height >= 820 && screen.height < 1000) return '74vh';
+      if (screen.height >= 700 && screen.height < 1000) return '74vh';
       if (screen.height > 1000) return '84.5vh';
       else return 0;
     },

@@ -62,11 +62,6 @@
     "addToken": "Adicionar um novo termo"
   },
 
-  "devices": {
-    "device": "Dispositivo | Dispositivos",
-    "printer": "Impressoras"
-  },
-
   "month": {
     "jan": "Jan",
     "feb": "Fev",
@@ -87,54 +82,34 @@
     "notFound": "404 Página não encontrada"
   },
 
-  "masterData": "Cadastros",
-  "system": "Sistema",
   "save": "Salvar",
   "columns": "Colunas",
   "search": "Pesquisar",
-  "registers": "Registros",
-
   "delete": "Excluir",
-
   "user": "Usuário | Usuários",
   "name": "Nome",
-  "code": "Códigos",
-  "itemData": "Produto | Produtos",
-  "itemName": "Nome do Produto",
-  "number": "Número",
-  "additionalContent": "Notas",
-  "note": "Notas",
-  "key": "Chave",
-  "client": "Cliente | Clientes",
-  "value": "Valor",
-  "group": "Grupo",
-  "description": "Descrição",
-  "properties": "Propriedades",
-  "location": "Endereço | Endereços",
-  "field": "Campo",
-  "capacity": "Capacidade | Capacidades",
-  "lock": "Bloqueio",
-  "created": "Criado",
-  "modified": "Modificado",
-  "id": "DB-ID",
-  "height": "Altura (mm)",
-  "width": "Largura (mm)",
-  "depth": "Profundidade (mm)",
-  "lotMandatory": "Lote Obrigatório",
-  "handlingUnit": "Unidade de Medida",
-  "scale": "Casas Decimais",
-  "weight": "Peso (Kg)",
-  "manufacturer": "Fabricante",
-  "index": "Índice",
-  "type": "Tipo",
-  "operator": "Operador",
-  "printer": "Impressora",
+  "id": "Id",
   "close": "Fechar",
-  "maxCharacter255": "Máximo 255 caracteres",
   "recordDetails": "Detalhes do Registro",
   "deleteMessage": "Os registros selecionados serão excluídos!",
   "no": "Não",
   "yes": "Sim",
   "confirm": "Confirmar",
-  "cancel": "Cancelar"
+  "cancel": "Cancelar",
+
+  "api": "API | APIs",
+  "covid": "Covid",
+  "pokemon": "Pokemon | Pokemons",
+  "beer": "Cerveja | Cervejas",
+
+  "activities": "Atividades",
+  "sports": "Esporte | Esportes",
+  "e_sports": "E-Sports",
+
+  "area": "Área",
+  "science": "Ciências",
+  "development": "Desenvolvimento",
+
+  "device": "Dispositivo | Dispositivos",
+  "consoles": "Consoles"
 }

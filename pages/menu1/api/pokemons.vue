@@ -29,7 +29,6 @@ export default {
       .then(res => {
         this.pokemons = res.data.results
       })
-
   },
 }
 </script>

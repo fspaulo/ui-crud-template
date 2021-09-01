@@ -19,11 +19,11 @@
         </v-btn>
       </div>
 
-<!--      <span>Vuetify</span>
-      <div class="d-flex align-center">
-        <v-img v-if="isAuthenticated" alt="logo" class="mb-1" contain
-               src="/logos/vuetify.png" width="" height="40"/>
-      </div>-->
+<!--     <span>Vuetify</span>-->
+<!--      <div class="d-flex align-center">-->
+<!--        <v-img v-if="isAuthenticated" class="mb-1"-->
+<!--               src="/logos/theoffice.png" sizes="5x20"/>-->
+<!--      </div>-->
 
       <v-spacer/>
 

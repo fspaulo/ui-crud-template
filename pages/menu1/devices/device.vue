@@ -1,6 +1,6 @@
 <template>
   <div>
-    <teste :title="$tc('devices.device', 2)" :headers="headers" :data="devices"/>
+    <SimpleTable :title="$tc('device', 2)" :headers="headers" :data="devices"/>
 
   </div>
 </template>
