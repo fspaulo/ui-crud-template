@@ -33,14 +33,19 @@
       width="100%"
       :height="tableSizeByScreen"
       dense
+      @click:row="clickProperties"
       :no-data-text="$t('simpleTable.emptyTable')"
       :no-results-text="$t('simpleTable.noResult')"
       :loading-text="$t('simpleTable.loading')"
       class="elevation-0 createTable"
-      @click:row="clickProperties"
       :single-select="false"
       :show-select="isMultipleSelect"
       :items-per-page="itemPerPageByScreen"
+      :footer-props="{
+        'items-per-page-text': 'Items por página',
+        'items-per-page-options': itemsPerPageSelect,
+      }"
+
     >
       <!--  Table Header  -->
       <template v-slot:top>

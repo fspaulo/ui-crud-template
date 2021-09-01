@@ -1,8 +1,8 @@
 # ui-template-crud
 ### Project User Interface - CRUD
-`Vue.js 2.6.12`
-`Vuetify 2.4.4`
-`Nuxt 2.14.12`
+`Vue.js`
+`Vuetify`
+`Nuxt`
 
 The interface has Dark and Light Mode, and internationalization in English and Portuguese languages (lib i18n)
 

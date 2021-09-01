@@ -132,9 +132,9 @@ export default {
   watch: {},
 
   methods: {
-    value(val) {
-      let t = this.selectedItem
-    },
+    // value(val) {
+    //   let t = this.selectedItem
+    // },
 
     showHeaders(h) {
       if (h.text === this.$t('created') || h.text === this.$t('modified') ||
