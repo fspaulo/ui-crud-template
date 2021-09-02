@@ -142,16 +142,16 @@ export default {
       this.actionButton = btn
 
       if (this.showPropertiesTable === true) {
-        if (btn.name === "delete") {
+        if (btn.name === this.$t('delete')) {
           this.showConfirmDialog = !this.showConfirmDialog;
         }
 
-        if (btn.name === "edit") {
+        if (btn.name === this.$t('edit')) {
           this.showEditDialog = !this.showEditDialog;
         }
 
       } else {
-        if (btn.name === "create") {
+        if (btn.name === this.$t('create')) {
           this.showEditDialog = !this.showEditDialog;
           this.selectedItem = {};
         }

@@ -30,10 +30,10 @@
                   </div>
                   <div class="mt-4">
                     <v-btn icon class="mx-2" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-                      <v-icon>mdi-facebook</v-icon>
+                      <v-icon color="primary">mdi-facebook</v-icon>
                     </v-btn>
                     <v-btn icon href="https://br.linkedin.com" target="_blank">
-                      <v-icon>mdi-linkedin</v-icon>
+                      <v-icon color="primary">mdi-linkedin</v-icon>
                     </v-btn>
                   </div>
                 </div>
