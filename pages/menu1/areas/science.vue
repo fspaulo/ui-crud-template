@@ -23,7 +23,7 @@ export default {
     return {
       coins: [],
       headers: [
-        {text: this.$t('number'), value: 'number', sortable: true, show: true, fixed: true},
+        {text: "Number", value: 'number', sortable: true, show: true, fixed: true},
       ],
 
     }

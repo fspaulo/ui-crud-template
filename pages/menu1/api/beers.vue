@@ -14,11 +14,11 @@ export default {
       datas: [],
       headers: [
         { text: this.$t('name'), value: 'name', sortable: true, show: true, fixed: true},
-        { text: this.$t('slogan'), width: '250px', value: 'tagline', sortable: true, show: true, fixed: false },
-        { text: this.$t('firstBrewed'), width: '135px', value: 'first_brewed', sortable: false, show: true, fixed: false }, // fabricado em
-        { text: this.$t('ibu'), width: '80px', value: 'ibu', sortable: true, show: true, isQuickSearch: true, fixed: false },
-        { text: this.$t('attenuation'), value: 'attenuation_level', sortable: true, show: true, fixed: false },
-        { text: this.$t('abv'), width: '80px', value: 'abv', sortable: true, show: true, fixed: false },
+        { text: this.$t('beers.slogan'), width: '250px', value: 'tagline', sortable: true, show: true, fixed: false },
+        { text: this.$t('beers.firstBrewed'), width: '135px', value: 'first_brewed', sortable: false, show: true, fixed: false },
+        { text: this.$t('beers.ibu'), width: '80px', value: 'ibu', sortable: true, show: true, isQuickSearch: true, fixed: false },
+        { text: this.$t('beers.attenuation'), value: 'attenuation_level', sortable: true, show: true, fixed: false },
+        { text: this.$t('beers.abv'), width: '80px', value: 'abv', sortable: true, show: true, fixed: false },
         { text: this.$t('description'), value: 'description', sortable: true, show: false, fixed: false },
       ],
 

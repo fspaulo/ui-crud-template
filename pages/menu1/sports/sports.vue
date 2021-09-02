@@ -39,9 +39,9 @@ export default {
         }
       ],
       headers: [
-        { text: this.$t('name'), value: 'name', sortable: true, show: true, fixed: true },
-        { text: this.$t('hour'), value: 'hour', sortable: true, show: true, fixed: false },
-        { text: this.$t('id'), value: 'id', sortable: true, show: false, fixed: false },
+        { text: "Name", value: 'name', sortable: true, show: true, fixed: true },
+        { text: "Hour", value: 'hour', sortable: true, show: true, fixed: false },
+        { text: "Id", value: 'id', sortable: true, show: false, fixed: false },
       ],
 
     }

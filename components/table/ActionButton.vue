@@ -2,25 +2,35 @@
   <div
     :class="!this.$vuetify.theme.dark ? 'btn-group-light py-1' : 'btn-group-dark py-1'"
   >
-    <v-btn
-      v-for="btn in defaultBtns" :key="btn.name"
-      small
-      class="mx-1 elevation-1"
-      @click="$emit('actionClick',btn)"
-    >
-      <v-icon>{{ btn.icon }}</v-icon>
-    </v-btn>
+    <v-tooltip bottom v-for="btn in defaultBtns" :key="btn.name">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          x-small fab
+          class="mx-1 elevation-0"
+          v-bind="attrs" v-on="on"
+          @click="$emit('actionClick',btn)"
+        >
+          <v-icon :color="btn.color">{{ btn.icon }}</v-icon>
+        </v-btn>
+      </template>
+      <span>{{ btn.name }}</span>
+    </v-tooltip>
 
     <v-divider class="mx-1" vertical></v-divider>
 
-    <v-btn
-      v-for="btn in actionBtns" :key="btn.name"
-      small
-      class="mx-1 elevation-1"
-      @click="$emit('actionClick',btn)"
-    >
-      <v-icon>{{ btn.icon }}</v-icon>
-    </v-btn>
+    <v-tooltip bottom v-for="btn in actionBtns" :key="btn.name">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          x-small fab
+          class="mx-1 elevation-0"
+          v-bind="attrs" v-on="on"
+          @click="$emit('actionClick',btn)"
+        >
+          <v-icon>{{ btn.icon }}</v-icon>
+        </v-btn>
+      </template>
+      <span>{{ btn.name }}</span>
+    </v-tooltip>
 
     <div class="registers">{{ $t('registers') }}: {{ numberOfRecords }}</div>
   </div>
@@ -43,29 +53,32 @@ export default {
     return {
       defaultBtns: [
         {
-          name: 'create',
+          name: this.$t('create'),
           icon: 'mdi-plus',
-          action: 'createProperty'
+          action: 'createProperty',
+          color: 'primary'
         },
         {
-          name: 'edit',
+          name: this.$t('edit'),
           icon: 'mdi-pencil',
-          action: 'editProperty'
+          action: 'editProperty',
+          color: 'warning'
         },
         {
-          name: 'delete',
+          name: this.$t('delete'),
           icon: 'mdi-minus',
-          action: 'deleteProperty'
+          action: 'deleteProperty',
+          color: 'error'
         }],
 
       actionBtns: [
         {
-          name: 'play',
+          name: this.$t('play'),
           icon: 'mdi-play',
           action: ''
         },
         {
-          name: 'printer',
+          name: this.$t('printer'),
           icon: 'mdi-printer',
           action: ''
         },

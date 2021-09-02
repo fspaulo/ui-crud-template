@@ -85,7 +85,6 @@
   "save": "Salvar",
   "columns": "Colunas",
   "search": "Pesquisar",
-  "delete": "Excluir",
   "user": "Usuário | Usuários",
   "name": "Nome",
   "id": "Id",
@@ -97,10 +96,34 @@
   "confirm": "Confirmar",
   "cancel": "Cancelar",
 
+  "create": "Criar",
+  "edit": "Editar",
+  "delete": "Excluir",
+  "play": "Executar",
+  "printer": "Imprimir",
+
   "api": "API | APIs",
-  "covid": "Covid",
+  "covid": {
+    "covid": "Covid - Brasil",
+    "state": "Estado",
+    "cases": "Casos",
+    "deaths": "Mortes",
+    "suspects": "Suspeitos",
+    "refuses": "Descartados",
+    "datetime": "Atualização"
+  },
+
   "pokemon": "Pokemon | Pokemons",
+
   "beer": "Cerveja | Cervejas",
+  "beers": {
+    "slogan": "Slogan",
+    "firstBrewed": "Fabricado em:",
+    "ibu": "IBU",
+    "attenuation": "Atenuação",
+    "abv": "ABV"
+  },
+  "description": "Descrição",
 
   "activities": "Atividades",
   "sports": "Esporte | Esportes",
@@ -111,5 +134,8 @@
   "development": "Desenvolvimento",
 
   "device": "Dispositivo | Dispositivos",
-  "consoles": "Consoles"
+
+  "consoles": "Consoles",
+  "brand": "Marca",
+  "model": "Modelo"
 }

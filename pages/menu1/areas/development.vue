@@ -26,8 +26,8 @@ export default {
         {language: 'C++', ide: 'Dev C++'},
       ],
       headers: [
-        {text: this.$t('language'), value: 'language', sortable: true, show: true, fixed: true},
-        {text: this.$t('ide'), value: 'ide', sortable: true, show: true, fixed: false},
+        {text: "Language", value: 'language', sortable: true, show: true, fixed: true},
+        {text: "IDE", value: 'ide', sortable: true, show: true, fixed: false},
 
       ],
 

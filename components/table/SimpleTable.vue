@@ -24,51 +24,50 @@
       :deleted-item="deleteItem"
     />
 
-    <v-data-table
-      v-model="selected"
-      :headers="showHeaders"
-      fixed-header
-      :items="data"
-      :search="search"
-      width="100%"
-      :height="tableSizeByScreen"
-      dense
-      @click:row="clickProperties"
-      :no-data-text="$t('simpleTable.emptyTable')"
-      :no-results-text="$t('simpleTable.noResult')"
-      :loading-text="$t('simpleTable.loading')"
-      class="elevation-0 createTable"
-      :single-select="false"
-      :show-select="isMultipleSelect"
-      :items-per-page="itemPerPageByScreen"
-      :footer-props="{
+    <v-card elevation="1">
+      <v-data-table
+        v-model="selected"
+        :headers="showHeaders"
+        :items="data"
+        :search="search"
+        height="calc(102vh - 100px)"
+        fixed-header
+        dense
+        @click:row="clickProperties"
+        :no-data-text="$t('simpleTable.emptyTable')"
+        :no-results-text="$t('simpleTable.noResult')"
+        :loading-text="$t('simpleTable.loading')"
+        class="elevation-1 createTable"
+        :single-select="false"
+        :show-select="isMultipleSelect"
+        :footer-props="{
         'items-per-page-text': 'Items por página',
         'items-per-page-options': itemsPerPageSelect,
       }"
+      >
+        <!--  Table Header  -->
+        <template v-slot:top>
+          <ToolbarTable :title="title" :searchValue="search" @send="receiveSearch"/>
 
-    >
-      <!--  Table Header  -->
-      <template v-slot:top>
-        <ToolbarTable :title="title" :searchValue="search" @send="receiveSearch"/>
+          <action-button id="action-buttons"
+                         @actionClick="clickEditDialog"
+                         :create-item="createItem"
+                         :edit-item="editItem"
+                         :registers="data.length"/>
 
-        <action-button id="action-buttons"
-                       @actionClick="clickEditDialog"
-                       :create-item="createItem"
-                       :edit-item="editItem"
-                       :registers="data.length"/>
-
-        <div class="button_columns mr-6 mt-0">
-          <v-select v-model="selectedHeaders"
-                    :items="newHeaders" class="remove_underline mt-3"
-                    append-icon="mdi-menu"
-                    multiple
-                    return-object
-                    flat dense>
-            <template v-slot:selection="{ item, index }"/>
-          </v-select>
-        </div>
-      </template>
-    </v-data-table>
+          <div class="button_columns mr-6 mt-0">
+            <v-select v-model="selectedHeaders"
+                      :items="newHeaders" class="remove_underline mt-3"
+                      append-icon="mdi-menu"
+                      multiple
+                      return-object
+                      flat dense>
+              <template v-slot:selection="{ item, index }"/>
+            </v-select>
+          </div>
+        </template>
+      </v-data-table>
+    </v-card>
 
     <properties-table
       :show-properties-table="showPropertiesTable"
@@ -107,7 +106,7 @@ export default {
     headers: Array,
   },
 
-  data (){
+  data() {
     return {
       search: '',
       selected: [],
@@ -198,13 +197,13 @@ export default {
 
   },
 
-  created () {
+  created() {
     this.newHeaders = Object.values(this.headers);
     this.selectedHeaders = this.newHeaders;
   },
 
   computed: {
-    showHeaders () {
+    showHeaders() {
       return this.newHeaders.filter(s => this.selectedHeaders.includes(s));
     },
 
@@ -228,7 +227,7 @@ export default {
     },
   },
 
-  watch:{
+  watch: {
     isMultipleSelect() {
       this.selected = [];
     }
@@ -238,26 +237,28 @@ export default {
 </script>
 
 <style scoped>
-.button_columns{
+.button_columns {
   float: right;
   justify-content: center;
 
   width: 8px;
 }
-.remove_underline{
+
+.remove_underline {
   padding-right: 100%;
 }
 
-.v-data-table.v-data-table.v-data-table{
+.v-data-table.v-data-table.v-data-table {
   white-space: nowrap;
 }
 
 /* Table css for Light theme */
-.theme--light.v-data-table.v-data-table.v-data-table >>> th{
+.theme--light.v-data-table.v-data-table.v-data-table >>> th {
   resize: horizontal;
   background-color: #ececec;
 }
-.theme--light.v-data-table.v-data-table.v-data-table >>> td{
+
+.theme--light.v-data-table.v-data-table.v-data-table >>> td {
   min-width: 10px;
   max-width: 255px;
   overflow: auto;
@@ -267,12 +268,13 @@ export default {
 }
 
 /* Table css for Dark theme */
-.theme--dark.v-data-table.v-data-table.v-data-table >>> th{
+.theme--dark.v-data-table.v-data-table.v-data-table >>> th {
   resize: horizontal;
   background-color: #303030;
   border-right: 1px solid #484848;
 }
-.theme--dark.v-data-table.v-data-table.v-data-table >>> td{
+
+.theme--dark.v-data-table.v-data-table.v-data-table >>> td {
   min-width: 10px;
   max-width: 255px;
   overflow: auto;

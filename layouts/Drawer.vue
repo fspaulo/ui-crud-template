@@ -106,7 +106,7 @@ export default {
           title: this.$tc("api", 2),
           icon: "mdi-api",
           subItems: [  // sub-items do menu
-            {title: this.$t("covid"), to: "/menu1/api/covid"},
+            {title: this.$t("covid.covid"), to: "/menu1/api/covid"},
             {title: this.$tc("pokemon", 2), to: "/menu1/api/pokemons"},
             {title: this.$tc("beer", 2), to: "/menu1/api/beers"},
           ],
